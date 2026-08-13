@@ -31,3 +31,16 @@ Paso 4: Seguimiento y Cierre
 Una vez enviado, podés revisar el estado de tu caso desde la sección Mis Tickets.
 
 Cuando el técnico resuelva la falla, recibirás un aviso. Por favor, confirmá si el problema quedó solucionado aprobando la respuesta en el sistema.
+
+Guía: ¿Qué significan los estados de tu Ticket?
+Cuando abres un caso en GLPI, este pasa por diferentes etapas:
+
+🔵 Nuevo: El ticket fue registrado con éxito y está esperando ser revisado por el equipo técnico.
+
+🟡 En proceso (Asignado): Un técnico del Centro de Comunicaciones ya tomó tu caso y está trabajando en él.
+
+🟠 En espera: El técnico te solicitó más información, una foto o estamos a la espera de un repuesto/insumo externo.
+
+🟢 Resuelto: El trabajo técnico fue completado. Tenés que ingresar al sistema para Aprobar que todo esté bien.
+
+⚪ Cerrado: El caso se da por concluido definitivamente tras la aprobación.
