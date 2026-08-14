@@ -1,66 +1,69 @@
 # glpi-conocimientos
-Guía: Instalación del Agente GLPI para Inventario Automático (Windows)
-Esta guía detalla el procedimiento que el personal técnico debe ejecutar en cada PC o notebook de la facultad para habilitar el reporte e inventario automático en el servidor GLPI.
+Guía: Manual de Procedimiento: Creación y Gestión de Perfiles
+Este documento describe la metodología para definir, configurar y asignar perfiles de acceso en la plataforma GLPI, garantizando el principio de menor privilegio y la seguridad del inventario y la mesa de ayuda.
 
-1. Descarga del Agente GLPI
-Abrir el navegador en la computadora a inventariar y acceder al repositorio de descargas de GLPI Agent en GitHub:
+1. Conceptos Clave de Seguridad
+Separación de funciones: Los permisos administrativos no deben otorgarse a cuentas genéricas ni a usuarios finales.
 
-[https://github.com/glpi-project/glpi-agent/releases](https://github.com/glpi-project/glpi-agent/releases)
+Uso del perfil Super-Admin: Reservado exclusivamente para tareas estructurales (actualizaciones, backups, reglas globales, plugins). No utilizar para la gestión diaria de tickets.
 
-Descargar el archivo instalador oficial para Windows según la arquitectura (por lo general, la versión de 64 bits: glpi-agent-1.x-x64.msi).
+Herencia de entidades: Definir si un perfil tiene alcance únicamente sobre una subentidad o sobre toda la estructura jerárquica de la facultad.
 
-2. Instalación Paso a Paso
-Ejecutar el archivo .msi descargado con permisos de administrador.
+2. Paso a Paso: Crear un Nuevo Perfil
+Iniciar sesión con una cuenta con perfil Super-Admin.
 
-Avanzar en el asistente haciendo clic en Next e indicar el tipo de instalación Typical.
+Acceder al menú: Administración > Perfiles (Administration > Profiles).
 
-En la pantalla de Server Configuration Target:
+Hacer clic en el botón + (Agregar) en la barra superior.
 
-En la opción Service URL, ingresar la URL completa del servidor GLPI apuntando al punto de inventario:
+Completar los campos iniciales:
 
-[http://192.168.27.217/front/inventory.php](http://192.168.27.217/front/inventory.php)
+Nombre: Denominación clara del rol (ej. Técnico Redes - Nivel 1, Operador de Laboratorio, Auditor Externo).
 
-(Nota: Si el servidor usa un subdirectorio o la carpeta /public, asegurar la ruta exacta al script de recepción).
+Perfil predeterminado: Indicar si será el perfil asignado automáticamente a los nuevos usuarios.
 
-(Opcional) En la ventana de configuración del agente, desmarcar la opción Quick Install si se requiere personalizar opciones avanzadas.
+Interfaz: Seleccionar entre Interfaz simplificada (usuarios finales/Post-Only) o Interfaz estándar (técnicos y administradores).
 
-Avanzar con Next hasta llegar a las opciones de ejecución.
+Hacer clic en Guardar.
 
-En la pantalla de tareas, asegurarse de marcar Run inventory after installation (Ejecutar inventario tras instalar).
+3. Configuración Fina de Permisos (Pestañas)
+Una vez creado el perfil, se deben ajustar las matrices de permisos ingresando a sus pestañas laterales:
 
-Hacer clic en Install y aguardar a que el proceso finalice en pantalla.
+Asistencia / Helpdesk:
 
-Presionar Finish.
+Definir si el rol puede crear, actualizar, asignar, solucionar o eliminar tickets.
 
-3. Forzar el Primer Inventario y Verificación
-Abrir la barra de búsqueda de Windows y buscar GLPI Agent Monitor.
+Habilitar o restringir la visualización de tickets de otros grupos o entidades.
 
-En el panel o menú emergente del agente, hacer clic en la opción Force Inventory.
+Configurar permisos para añadir tareas y tiempos de intervención.
 
-El estado del agente cambiará a Running inventory mientras recolecta la información del equipo.
+Inventario / Activos:
 
-4. Confirmación dentro de GLPI (Panel Administrativo)
-Ingresar al panel de administración de GLPI ([http://192.168.27.217/](http://192.168.27.217/)).
+Configurar permisos de Lectura, Modificación o Eliminación para cada tipo de activo (Computadoras, Dispositivos de red, Impresoras, Software).
 
-Ir a Activos > Computadoras.
+Recomendación: Bloquear el permiso de eliminación definitiva de activos a perfiles que no sean Administrador general.
 
-Si el equipo no figura de inmediato, hacer clic en la opción de Recargar página.
+Herramientas / Base de Conocimientos:
 
-La computadora aparecerá registrada automáticamente con la siguiente información relevada:
+Habilitar acceso de lectura o escritura sobre manuales internos y públicos.
 
-Hardware: Nombre del equipo, fabricante, modelo, número de serie, procesador y memoria RAM.
+Administración:
 
-Red: Direcciones IP, direcciones MAC y placas de red detectadas (LAN/Wi-Fi).
+Definir si el perfil puede gestionar usuarios, grupos, reglas de negocio o diccionarios del sistema.
 
-Almacenamiento y Discos: Unidades de disco, capacidad y volúmenes.
+4. Asignación de Perfiles a Usuarios
+Ir a Administración > Usuarios (Administration > Users).
 
-Sistema Operativo: Versión, arquitectura y parches instalados.
+Seleccionar el usuario correspondiente de la lista.
 
-Software: Lista completa de aplicaciones e insumos instalados.
+En el menú lateral izquierdo, hacer clic en Autorizaciones (Authorizations).
 
-Histórico: Detalle con fecha/hora de la importación realizada por el agente.
+Hacer clic en Agregar una autorización:
 
-⚠️ Notas y Recomendaciones para Técnicos
-Red local obligatoria: Para que el agente pueda enviar los datos al servidor en el primer escaneo, la PC debe estar conectada a la misma red física/Wi-Fi de la facultad.
+Seleccionar la Entidad correspondiente (ej. Entidad Raíz o una sede/área específica).
 
-Asignación manual posterior: Una vez que la computadora aparezca en el inventario de GLPI, ingresar a su ficha para asignarle el Estado (ej. En uso), el Técnico a cargo, el Usuario principal y la Ubicación exacta (ej. Aula 2 / Laboratorio de Sistemas).
+Asignar el Perfil adecuado.
+
+Indicar si aplica de forma Recursiva (para subentidades).
+
+Presionar Agregar.bicación exacta (ej. Aula 2 / Laboratorio de Sistemas).
