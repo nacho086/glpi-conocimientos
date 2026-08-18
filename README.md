@@ -1,70 +1,133 @@
 # glpi-conocimientos
-1. Gestión de Grupos de Trabajo
-Los grupos permiten organizar al personal por áreas funcionales o técnicas (ej. Soporte Nivel 1, Redes y Conectividad, Docentes Departamento Sistemas) para facilitar la asignación colectiva de tickets y activos.
+GLPI divide sus accesos según el tipo de interfaz:
 
-Paso a paso para crear un grupo:
+Interfaz Simplificada (Self-Service): Diseñada para la interacción directa del usuario final sin acceso a la administración ni al inventario global.
 
-Iniciar sesión como Admin o Super-Admin.
+Interfaz Estándar: Diseñada para el personal operativo, técnico, supervisores y administradores del sistema.
 
-Ir a Administración > Grupos (Administration > Groups).
+1. Self-Service / Post-Only (Peticionario / Usuario Final)
+Interfaz: Simplificada.
 
-Hacer clic en el botón + (Agregar) en la barra superior.
+Destinatarios: Alumnos, docentes, personal administrativo y no docentes.
 
-Completar los campos requeridos:
+Funciones principales:
 
-Nombre: Denominación clara del grupo (ej. Soporte Técnico - Centro de Comunicaciones).
+Crear tickets de incidencias (fallas) o requerimientos de servicio.
 
-Es visible en tickets / Puede ser asignado: Seleccionar Sí si el grupo recibirá derivaciones de tickets de soporte.
+Consultar el estado y evolución de sus propias solicitudes.
 
-Puede ser solicitante: Seleccionar Sí si se van a abrir tickets a nombre de todo el equipo.
+Leer artículos públicos y manuales en la Base de Conocimiento (FAQ).
 
-Puede contener: Habilitar si contendrá Elementos (inventario) o Usuarios.
+Validar, aprobar o rechazar soluciones propuestas por los técnicos.
 
-Hacer clic en Guardar.
+Solicitar reserva de recursos (proyectores, salas, notebooks) si está habilitado.
 
-En la pestaña lateral Usuarios, asociar a los integrantes del grupo.
+Restricciones: No tiene visibilidad sobre el inventario general ni sobre los tickets de otros usuarios.
 
-2. Creación Manual de Usuarios
-Navegar a Administración > Usuarios (Administration > Users).
+2. Hotliner (Mesa de Entradas / Operador de Primera Línea)
+Interfaz: Estándar.
 
-Hacer clic en el botón + (Agregar).
+Destinatarios: Personal de recepción, telefonistas o soporte de nivel 1.
 
-Completar los datos principales de la ficha:
+Funciones principales:
 
-Nombre de inicio de sesión (Login): Identificador del usuario (ej. formato estándar institucional: nombre.apellido).
+Recepción y registro formal de solicitudes recibidas por canales externos (teléfono, presencial o correo).
 
-Contraseña / Confirmar contraseña: Clave temporal que se entregará al usuario.
+Clasificación inicial de incidentes: definición de categoría, urgencia e impacto.
 
-Nombre y Apellido: Datos personales completos.
+Derivación y asignación de tickets a los grupos técnicos pertinentes.
 
-Correo electrónico: Dirección de correo institucional donde se enviarán las notificaciones de tickets.
+Restricciones: Generalmente no ejecuta la resolución técnica ni modifica configuraciones avanzadas del parque informático.
 
-Ubicación: Oficina, aula o laboratorio habitual donde se desempeña.
+3. Technician (Técnico de Soporte)
+Interfaz: Estándar.
 
-Activo: Mantener en Sí.
+Destinatarios: Equipo técnico de soporte en sitio, administradores de red de campo y pasantes de TI.
 
-Hacer clic en Guardar.
+Funciones principales:
 
-3. Asignación de Perfil, Entidad y Grupo al Usuario
-Una vez creado el usuario, es obligatorio definir su nivel de acceso para que pueda ingresar al sistema:
+Gestión, diagnóstico y resolución de tickets asignados de forma individual o a su grupo.
 
-Dentro de la ficha del usuario recién creado, ir a la pestaña Autorizaciones (Authorizations) en el menú lateral izquierdo.
+Registro de tareas realizadas, consumos de tiempo e insumos utilizados.
 
-Hacer clic en Agregar una autorización:
+Consulta, vinculación y actualización de activos en el módulo de Inventario (PCs, switches, impresoras, servidores).
 
-Entidad: Seleccionar la entidad correspondiente (ej. Entidad Raíz o subentidad regional).
+Publicación de soluciones y conversión de resoluciones en artículos de la Base de Conocimiento.
 
-Perfil: Elegir el rol adecuado (Self-Service/Post-Only para usuarios finales; Technician para operadores de mesa de ayuda; Supervisor para jefes de área).
+Restricciones: No puede modificar configuraciones globales del servidor, esquemas de permisos ni eliminar registros maestros de inventario.
 
-Recursivo: Indicar Sí si el usuario debe mantener los permisos en todas las subentidades dependientes.
+4. Normal
+Interfaz: Estándar.
 
-Presionar Agregar.
+Destinatarios: Personal en etapa de inducción, directores de área o auditores operativos.
 
-Ir a la pestaña Grupos y vincular al usuario a los grupos de trabajo a los que pertenezca.
+Funciones principales:
 
-4. Modificación, Inactivación y Bajas de Cuentas
-Restablecimiento de contraseñas: Desde la pestaña principal del usuario, escribir la nueva contraseña en los campos correspondientes y presionar Guardar.
+Navegación completa por el menú estándar de GLPI.
 
+Visualización del inventario de activos en modo solo lectura.
+
+Creación y seguimiento de tickets.
+
+Restricciones: No tiene permisos para asignar o dar por resueltos tickets técnicos ni alterar fichas de hardware/redes.
+
+5. Supervisor (Jefe de Área / Coordinador de Soporte)
+Interfaz: Estándar.
+
+Destinatarios: Jefes del Centro de Comunicaciones, coordinadores de infraestructura y líderes de soporte.
+
+Funciones principales:
+
+Supervisión y reasignación de la carga de trabajo entre los técnicos del área.
+
+Aprobación formal de solicitudes sujetas a validación (compras, cambios de infraestructura).
+
+Gestión de acuerdos de nivel de servicio (SLAs), escalamiento de incidentes críticos y prioridades.
+
+Visualización de estadísticas de rendimiento, métricas de tiempos de resolución y satisfacción de usuarios.
+
+6. Admin (Administrador Funcional)
+Interfaz: Estándar.
+
+Destinatarios: Administradores generales de la plataforma y encargados de gestión de TI.
+
+Funciones principales:
+
+Alta, baja y modificación de usuarios, grupos y entidades.
+
+Configuración de componentes generales, categorías de tickets, ubicaciones y modelos de hardware.
+
+Gestión total sobre los elementos del inventario físico y lógico.
+
+Restricciones: No interviene sobre configuraciones críticas del núcleo del sistema ni conexiones de bajo nivel reservadas al Super-Admin.
+
+7. Super-Admin (Administrador del Sistema / Servidor)
+Interfaz: Estándar.
+
+Destinatarios: Responsables directos del servidor GLPI y administradores de infraestructura base.
+
+Funciones principales:
+
+Control total e irrestricto sobre la plataforma y la base de datos.
+
+Instalación y parametrización de plugins (como agentes de inventario nativo).
+
+Definición de reglas automáticas de negocio, diccionarios de importación y conectores externos (LDAP, servidores de correo SMTP/IMAP).
+
+Configuración de seguridad, logs de auditoría y mantenimiento general.
+
+8. Observer (Observador / Auditor)
+Interfaz: Estándar.
+
+Destinatarios: Auditores internos/externos, autoridades o personal de control de gestión.
+
+Funciones principales:
+
+Acceso de solo lectura a la totalidad del inventario, tickets y reportes estadísticos.
+
+Extracción de datos para auditorías o balances de gestión técnica.
+
+Restricciones: Bloqueo total para crear, editar, reasignar o eliminar cualquier elemento dentro de la plataforma.
 Inactivación por baja o receso: Cuando un técnico, docente o pasante deja de prestar funciones, cambiar el estado del campo Activo a No.
 
 Regla de integridad: Nunca eliminar definitivamente un usuario que haya participado en tickets o figure como responsable de equipamiento en el inventario. La desactivación de la cuenta bloquea el acceso al sistema mientras mantiene intacto el historial técnico.
