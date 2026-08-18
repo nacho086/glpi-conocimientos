@@ -1,69 +1,70 @@
 # glpi-conocimientos
-Guía: Manual de Procedimiento: Creación y Gestión de Perfiles
-Este documento describe la metodología para definir, configurar y asignar perfiles de acceso en la plataforma GLPI, garantizando el principio de menor privilegio y la seguridad del inventario y la mesa de ayuda.
+1. Gestión de Grupos de Trabajo
+Los grupos permiten organizar al personal por áreas funcionales o técnicas (ej. Soporte Nivel 1, Redes y Conectividad, Docentes Departamento Sistemas) para facilitar la asignación colectiva de tickets y activos.
 
-1. Conceptos Clave de Seguridad
-Separación de funciones: Los permisos administrativos no deben otorgarse a cuentas genéricas ni a usuarios finales.
+Paso a paso para crear un grupo:
 
-Uso del perfil Super-Admin: Reservado exclusivamente para tareas estructurales (actualizaciones, backups, reglas globales, plugins). No utilizar para la gestión diaria de tickets.
+Iniciar sesión como Admin o Super-Admin.
 
-Herencia de entidades: Definir si un perfil tiene alcance únicamente sobre una subentidad o sobre toda la estructura jerárquica de la facultad.
-
-2. Paso a Paso: Crear un Nuevo Perfil
-Iniciar sesión con una cuenta con perfil Super-Admin.
-
-Acceder al menú: Administración > Perfiles (Administration > Profiles).
+Ir a Administración > Grupos (Administration > Groups).
 
 Hacer clic en el botón + (Agregar) en la barra superior.
 
-Completar los campos iniciales:
+Completar los campos requeridos:
 
-Nombre: Denominación clara del rol (ej. Técnico Redes - Nivel 1, Operador de Laboratorio, Auditor Externo).
+Nombre: Denominación clara del grupo (ej. Soporte Técnico - Centro de Comunicaciones).
 
-Perfil predeterminado: Indicar si será el perfil asignado automáticamente a los nuevos usuarios.
+Es visible en tickets / Puede ser asignado: Seleccionar Sí si el grupo recibirá derivaciones de tickets de soporte.
 
-Interfaz: Seleccionar entre Interfaz simplificada (usuarios finales/Post-Only) o Interfaz estándar (técnicos y administradores).
+Puede ser solicitante: Seleccionar Sí si se van a abrir tickets a nombre de todo el equipo.
+
+Puede contener: Habilitar si contendrá Elementos (inventario) o Usuarios.
 
 Hacer clic en Guardar.
 
-3. Configuración Fina de Permisos (Pestañas)
-Una vez creado el perfil, se deben ajustar las matrices de permisos ingresando a sus pestañas laterales:
+En la pestaña lateral Usuarios, asociar a los integrantes del grupo.
 
-Asistencia / Helpdesk:
+2. Creación Manual de Usuarios
+Navegar a Administración > Usuarios (Administration > Users).
 
-Definir si el rol puede crear, actualizar, asignar, solucionar o eliminar tickets.
+Hacer clic en el botón + (Agregar).
 
-Habilitar o restringir la visualización de tickets de otros grupos o entidades.
+Completar los datos principales de la ficha:
 
-Configurar permisos para añadir tareas y tiempos de intervención.
+Nombre de inicio de sesión (Login): Identificador del usuario (ej. formato estándar institucional: nombre.apellido).
 
-Inventario / Activos:
+Contraseña / Confirmar contraseña: Clave temporal que se entregará al usuario.
 
-Configurar permisos de Lectura, Modificación o Eliminación para cada tipo de activo (Computadoras, Dispositivos de red, Impresoras, Software).
+Nombre y Apellido: Datos personales completos.
 
-Recomendación: Bloquear el permiso de eliminación definitiva de activos a perfiles que no sean Administrador general.
+Correo electrónico: Dirección de correo institucional donde se enviarán las notificaciones de tickets.
 
-Herramientas / Base de Conocimientos:
+Ubicación: Oficina, aula o laboratorio habitual donde se desempeña.
 
-Habilitar acceso de lectura o escritura sobre manuales internos y públicos.
+Activo: Mantener en Sí.
 
-Administración:
+Hacer clic en Guardar.
 
-Definir si el perfil puede gestionar usuarios, grupos, reglas de negocio o diccionarios del sistema.
+3. Asignación de Perfil, Entidad y Grupo al Usuario
+Una vez creado el usuario, es obligatorio definir su nivel de acceso para que pueda ingresar al sistema:
 
-4. Asignación de Perfiles a Usuarios
-Ir a Administración > Usuarios (Administration > Users).
-
-Seleccionar el usuario correspondiente de la lista.
-
-En el menú lateral izquierdo, hacer clic en Autorizaciones (Authorizations).
+Dentro de la ficha del usuario recién creado, ir a la pestaña Autorizaciones (Authorizations) en el menú lateral izquierdo.
 
 Hacer clic en Agregar una autorización:
 
-Seleccionar la Entidad correspondiente (ej. Entidad Raíz o una sede/área específica).
+Entidad: Seleccionar la entidad correspondiente (ej. Entidad Raíz o subentidad regional).
 
-Asignar el Perfil adecuado.
+Perfil: Elegir el rol adecuado (Self-Service/Post-Only para usuarios finales; Technician para operadores de mesa de ayuda; Supervisor para jefes de área).
 
-Indicar si aplica de forma Recursiva (para subentidades).
+Recursivo: Indicar Sí si el usuario debe mantener los permisos en todas las subentidades dependientes.
 
-Presionar Agregar.bicación exacta (ej. Aula 2 / Laboratorio de Sistemas).
+Presionar Agregar.
+
+Ir a la pestaña Grupos y vincular al usuario a los grupos de trabajo a los que pertenezca.
+
+4. Modificación, Inactivación y Bajas de Cuentas
+Restablecimiento de contraseñas: Desde la pestaña principal del usuario, escribir la nueva contraseña en los campos correspondientes y presionar Guardar.
+
+Inactivación por baja o receso: Cuando un técnico, docente o pasante deja de prestar funciones, cambiar el estado del campo Activo a No.
+
+Regla de integridad: Nunca eliminar definitivamente un usuario que haya participado en tickets o figure como responsable de equipamiento en el inventario. La desactivación de la cuenta bloquea el acceso al sistema mientras mantiene intacto el historial técnico.
